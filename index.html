@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Плен — салон красоты в Самаре, Агибалова, 68</title>
+<meta name="description" content="Демо-макет сайта салона красоты «Плен»: стрижки, окрашивание, биозавивка, брови, маникюр. Самара, Агибалова, 68.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Golos+Text:wght@400;500;600&family=Bad+Script&display=swap" rel="stylesheet">
+<style>
+/* ══ Палитра снята с их афиши биозавивки и с вывески на Агибалова:
+      тёмный малахит, золото, кремовый. Зелёный кирпич зала — отдельный тон. ══ */
+:root{
+  --malachite:#0a221c;      /* фон афиши */
+  --malachite-2:#0e2e26;
+  --emerald:#14503f;        /* стены зала */
+  --sign:#127a68;           /* вывеска над входом */
+  --gold:#c9a227;
+  --gold-lt:#e6cf95;
+  --cream:#f3ede1;
+  --cream-dim:#c6bca9;
+  --moss:#7f9f61;
+  --ink:#12201b;
+  --line:rgba(201,162,39,.28);
+  --fd:'Old Standard TT',Georgia,serif;
+  --fb:'Golos Text','Helvetica Neue',Arial,sans-serif;
+  --fs:'Bad Script',cursive;
+  --pad:clamp(1.1rem,4.5vw,3.6rem);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{
+  margin:0;position:relative;background:var(--malachite);color:var(--cream);
+  font-family:var(--fb);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--fd);font-weight:400;margin:0;line-height:1.08}
+:focus-visible{outline:2px solid var(--gold-lt);outline-offset:3px}
+
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--pad)}
+.eyebrow{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin:0 0 1rem}
+
+/* ── Шапка ── */
+.top{position:sticky;top:0;z-index:60;background:rgba(10,34,28,.82);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:1rem;min-height:60px;justify-content:space-between}
+.mark{display:flex;align-items:baseline;gap:.6rem;text-decoration:none;flex-shrink:0}
+.mark b{font-family:var(--fd);font-size:1.25rem;letter-spacing:.42em;font-weight:400;color:var(--cream)}
+.mark i{font-style:normal;font-size:9px;letter-spacing:.26em;color:var(--gold);text-transform:uppercase}
+.top nav{display:none;gap:1.5rem;font-size:13.5px}
+.top nav a{text-decoration:none;color:var(--cream-dim);transition:color .25s}
+.top nav a:hover{color:var(--gold-lt)}
+.tel{display:none;font-size:13.5px;color:var(--cream-dim);text-decoration:none;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.7rem 1.35rem;border:1px solid var(--gold);color:var(--gold-lt);
+  background:none;font:inherit;font-size:13px;letter-spacing:.13em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;transition:background .3s,color .3s;min-height:44px}
+.btn:hover{background:var(--gold);color:var(--malachite)}
+.btn-fill{background:var(--gold);color:var(--malachite);border-color:var(--gold)}
+.btn-fill:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+@media(min-width:900px){.top nav{display:flex}.tel{display:block}}
+/* На узком экране подпись у логотипа выдавливала кнопку за край.
+   Её не было видно только потому, что overflow-x на body всё обрезал. */
+@media(max-width:560px){
+  .mark i{display:none}
+  .top-in{gap:.5rem}
+  .top .btn{padding:.7rem .9rem;font-size:12px;letter-spacing:.08em}
+  .mark b{font-size:1.1rem;letter-spacing:.3em}
+}
+
+/* ── Малахит: их фон с афиши. Турбулентность гнёт концентрические кольца,
+      получается камень, а не просто заливка. Рисуется один раз. ── */
+.stone{position:absolute;inset:0;z-index:0;overflow:hidden}
+.stone svg{width:100%;height:100%;display:block}
+
+/* ── Первый экран ── */
+.hero{position:relative;isolation:isolate;overflow:hidden;padding:clamp(3rem,9vw,6.5rem) 0 clamp(2.5rem,7vw,5rem)}
+.hero-grid{position:relative;z-index:2;display:grid;gap:clamp(2rem,5vw,3rem);align-items:center}
+@media(min-width:940px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+
+.title{font-size:clamp(3.6rem,17vw,9rem);letter-spacing:.16em;margin:0 0 .1em;
+  text-indent:.16em;color:var(--cream)}
+.title-sub{font-family:var(--fd);font-size:clamp(10px,2.4vw,13px);letter-spacing:.55em;
+  text-transform:uppercase;color:var(--gold);text-indent:.55em;margin-bottom:clamp(1.6rem,4vw,2.4rem)}
+.claim{font-family:var(--fd);font-size:clamp(1.5rem,4.4vw,2.5rem);line-height:1.22;max-width:19ch}
+.claim em{font-style:normal;color:var(--gold-lt)}
+.hero p.said{color:var(--cream-dim);font-size:15px;max-width:44ch;margin:1.1rem 0 0}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.9rem}
+
+/* арка с их афиши: золотой контур вокруг снимка */
+.arch{position:relative;aspect-ratio:3/4;max-width:430px;margin-inline:auto;width:100%}
+.arch>img{width:100%;height:100%;object-fit:cover;
+  border-radius:50% 50% 6px 6px / 34% 34% 3px 3px}
+.arch-ring{position:absolute;inset:-14px;pointer-events:none}
+.arch-ring path{fill:none;stroke:var(--gold);stroke-width:1.1;opacity:.85}
+/* блик бежит по дуге — золото на раме ловит свет */
+.spark{position:absolute;width:8px;height:8px;margin:-4px;border-radius:50%;
+  background:var(--gold-lt);box-shadow:0 0 14px 5px rgba(230,207,149,.55);
+  offset-path:path("M 2 400 L 2 150 A 148 148 0 0 1 298 150 L 298 400");
+  offset-rotate:0deg;opacity:.9}
+@media (prefers-reduced-motion:no-preference){
+  .spark{animation:ride 9s linear infinite}
+}
+@keyframes ride{from{offset-distance:0%}to{offset-distance:100%}}
+
+/* цифры под первым экраном */
+.facts{position:relative;z-index:2;display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1px;margin-top:clamp(2.4rem,6vw,3.6rem);background:var(--line)}
+@media(min-width:720px){.facts{grid-template-columns:repeat(4,1fr)}}
+.fact{background:var(--malachite);padding:1.15rem 1rem}
+.fact b{display:block;font-family:var(--fd);font-size:clamp(1.5rem,4vw,2.05rem);color:var(--gold-lt);line-height:1}
+.fact span{display:block;font-size:12px;color:var(--cream-dim);margin-top:.4rem;line-height:1.35}
+
+/* ── Золотая нить: одна линия на всю страницу, дорисовывается прокруткой ── */
+.thread{position:absolute;left:50%;top:0;width:min(1180px,100%);height:100%;
+  transform:translateX(-50%);pointer-events:none;z-index:1;display:none}
+@media(min-width:1100px){.thread{display:block}}
+.thread svg{width:100%;height:100%}
+.thread path{fill:none;stroke:var(--gold);stroke-width:1;opacity:.45;
+  stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke}
+@supports (animation-timeline:scroll()){
+  @media (prefers-reduced-motion:no-preference){
+    .thread path{animation:draw linear;animation-timeline:scroll(root);
+      animation-range:0 100%}
+  }
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* ── Секции ── */
+section{position:relative}
+.band{padding:clamp(3.4rem,9vw,6.4rem) 0}
+.band-light{background:var(--cream);color:var(--ink)}
+.band-light .eyebrow{color:#8a6f14}
+.band-emerald{background:var(--emerald);color:var(--cream)}
+.head{max-width:34ch;margin-bottom:clamp(2rem,5vw,3rem)}
+.head h2{font-size:clamp(1.9rem,5.6vw,3.1rem)}
+.head p{font-size:15px;margin:.9rem 0 0;color:var(--cream-dim);max-width:52ch}
+.band-light .head p{color:#5b6660}
+
+/* ── Что делаем: семь строк их же списка ── */
+.doing{border-top:1px solid var(--line)}
+.doing li{list-style:none;border-bottom:1px solid var(--line);display:grid;
+  grid-template-columns:2.6rem 1fr;align-items:baseline;gap:.6rem;padding:1.05rem 0}
+.doing ol{margin:0;padding:0}
+.doing .n{font-family:var(--fd);font-size:12px;letter-spacing:.12em;color:var(--gold)}
+.doing .t{font-family:var(--fd);font-size:clamp(1.1rem,3.4vw,1.55rem);line-height:1.25}
+.doing .d{grid-column:2;font-size:13.5px;color:var(--cream-dim);margin-top:.25rem}
+
+/* ── Кудри ── */
+.curly{display:grid;gap:clamp(1.6rem,4vw,2.6rem)}
+@media(min-width:900px){.curly{grid-template-columns:1fr 1fr;align-items:start}}
+.promise{list-style:none;margin:1.6rem 0 0;padding:0;display:grid;gap:1px;background:var(--line)}
+.promise li{background:var(--emerald);padding:1rem 1.1rem}
+.promise b{font-family:var(--fd);font-size:1.02rem;letter-spacing:.04em;display:block;color:var(--gold-lt)}
+.promise span{font-size:13.5px;color:rgba(243,237,225,.76)}
+.curly-pics{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.curly-pics img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.curly-pics img:first-child{grid-row:span 2;aspect-ratio:3/5}
+
+/* ── Прайс первого визита ── */
+.price{border-top:1px solid rgba(18,32,27,.18)}
+.price li{list-style:none;border-bottom:1px solid rgba(18,32,27,.18);
+  display:grid;grid-template-columns:1fr auto;gap:.5rem 1rem;padding:1.05rem 0;align-items:baseline}
+.price ul{margin:0;padding:0}
+.price .name{font-family:var(--fd);font-size:clamp(1.05rem,3.2vw,1.35rem)}
+.price .sum{font-family:var(--fd);font-size:clamp(1.15rem,3.4vw,1.5rem);white-space:nowrap;color:#1d3a2e}
+.price .note{grid-column:1/-1;font-size:12.5px;color:#6a7570;margin-top:.2rem}
+.tag{display:inline-block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid #b38f1f;color:#8a6f14;padding:.2rem .5rem;margin-left:.55rem;vertical-align:middle;white-space:nowrap}
+.src{font-size:12.5px;color:#6a7570;margin-top:1.6rem;max-width:62ch}
+
+/* ── Сколько длится ── */
+.clock{display:grid;gap:1px;background:var(--line);margin-top:1rem}
+@media(min-width:820px){.clock{grid-template-columns:repeat(3,1fr)}}
+.slot{background:var(--malachite-2);padding:clamp(1.3rem,3vw,1.9rem)}
+.slot .big{font-family:var(--fd);font-size:clamp(2.2rem,6vw,3rem);color:var(--gold-lt);line-height:1}
+.slot .unit{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:.35rem}
+.slot h3{font-size:1.15rem;margin:1rem 0 .35rem}
+.slot p{font-size:13.5px;color:var(--cream-dim);margin:0}
+.slot .keep{margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--line);font-size:13px}
+.slot .keep b{color:var(--gold-lt);font-weight:500}
+
+/* ── Работы: арки ── */
+.works{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(.5rem,1.6vw,1rem)}
+@media(min-width:700px){.works{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1020px){.works{grid-template-columns:repeat(4,1fr)}}
+.works figure{margin:0;position:relative}
+.works img{width:100%;aspect-ratio:3/4;object-fit:cover;
+  border-radius:50% 50% 2px 2px / 22% 22% 1px 1px}
+.works figcaption{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--cream-dim);margin-top:.55rem;text-align:center}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .works figure{animation:lift linear both;animation-timeline:view();animation-range:entry 8% entry 62%}
+  }
+}
+@keyframes lift{from{transform:translateY(26px)}to{transform:none}}
+
+/* ── Зал ── */
+.hall{display:grid;gap:clamp(.5rem,1.5vw,.85rem);grid-template-columns:repeat(2,1fr)}
+@media(min-width:760px){.hall{grid-template-columns:repeat(4,1fr)}}
+.hall img{width:100%;height:100%;object-fit:cover;aspect-ratio:1}
+.hall .tall{grid-row:span 2}
+.hall .tall img{aspect-ratio:1/2.06}
+.hall .wide{grid-column:span 2}
+.hall .wide img{aspect-ratio:2.06/1}
+.perks{list-style:none;margin:clamp(1.6rem,4vw,2.4rem) 0 0;padding:0;
+  display:grid;gap:.7rem 1.6rem;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.perks li{font-size:14px;color:var(--cream-dim);padding-left:1.1rem;position:relative}
+.perks li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;
+  background:var(--gold);transform:rotate(45deg)}
+
+/* ── Отзывы ── */
+.revs{columns:1;column-gap:clamp(1rem,2.4vw,1.6rem)}
+@media(min-width:700px){.revs{columns:2}}
+@media(min-width:1040px){.revs{columns:3}}
+.rev{break-inside:avoid;border:1px solid var(--line);padding:1.15rem 1.2rem;margin-bottom:clamp(1rem,2.4vw,1.6rem)}
+.rev p{margin:0;font-size:14.5px;color:rgba(243,237,225,.88)}
+.rev .who{display:flex;justify-content:space-between;gap:1rem;margin-top:.8rem;
+  font-size:12px;color:var(--cream-dim);border-top:1px solid var(--line);padding-top:.65rem}
+.rev .who b{font-weight:500;color:var(--gold-lt)}
+.masters{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem}
+.masters span{border:1px solid var(--line);padding:.4rem .8rem;font-size:13px;color:var(--cream-dim)}
+.masters span b{color:var(--gold-lt);font-weight:500;font-family:var(--fd)}
+
+/* ── Карта и контакты ── */
+.find{display:grid;gap:clamp(1.4rem,4vw,2.4rem)}
+@media(min-width:900px){.find{grid-template-columns:1fr 1.15fr;align-items:start}}
+.map{position:relative;min-height:clamp(290px,44vw,440px);border:1px solid var(--line)}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.info dl{margin:0;display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.info div{background:var(--malachite);padding:.95rem 1.1rem;display:grid;
+  grid-template-columns:8.5rem 1fr;gap:.9rem;align-items:baseline}
+.info dt{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.info dd{margin:0;font-size:14.5px}
+.info dd a{color:var(--gold-lt);text-decoration:none;border-bottom:1px solid var(--line)}
+@media(max-width:520px){.info div{grid-template-columns:1fr;gap:.25rem}}
+
+/* ── Форма ── */
+.form{display:grid;gap:.9rem;max-width:560px}
+.form label{display:grid;gap:.35rem;font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold)}
+.form input,.form select,.form textarea{
+  font:inherit;font-size:15px;color:var(--cream);background:rgba(255,255,255,.04);
+  border:1px solid var(--line);padding:.75rem .85rem;min-height:46px;width:100%}
+.form textarea{min-height:92px;resize:vertical}
+.form option{color:#14201b}
+.hint{font-size:12.5px;color:var(--cream-dim);margin:0}
+.ok{border:1px solid var(--gold);padding:1rem 1.15rem;font-size:14.5px;color:var(--gold-lt)}
+
+/* ── Подвал ── */
+.foot{border-top:1px solid var(--line);padding:2.2rem 0 2.6rem;font-size:12.5px;color:var(--cream-dim)}
+.foot p{margin:0 0 .5rem;max-width:74ch}
+.foot a{color:var(--gold-lt)}
+.sig{font-family:var(--fs);font-size:1.5rem;color:var(--gold-lt);margin:.2rem 0 1.4rem}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="mark" href="#top"><b>ПЛЕН</b><i>салон красоты</i></a>
+    <nav>
+      <a href="#curly">Кудри</a>
+      <a href="#price">Первый визит</a>
+      <a href="#works">Работы</a>
+      <a href="#revs">Отзывы</a>
+      <a href="#find">Как доехать</a>
+    </nav>
+    <a class="tel" href="tel:+79608325552">+7 (960) 832-55-52</a>
+    <a class="btn btn-fill" href="#zapis">Записаться</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ══ Первый экран ══ -->
+<section class="hero">
+  <div class="stone" aria-hidden="true">
+    <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1200 800">
+      <defs>
+        <filter id="mal" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.004 0.011" numOctaves="4" seed="7" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="190" xChannelSelector="R" yChannelSelector="G"/>
+          <feGaussianBlur stdDeviation="0.6"/>
+        </filter>
+        <radialGradient id="core" cx="26%" cy="16%" r="95%">
+          <stop offset="0" stop-color="#1d5a47"/>
+          <stop offset=".55" stop-color="#0f332a"/>
+          <stop offset="1" stop-color="#071914"/>
+        </radialGradient>
+        <pattern id="bands" width="1200" height="800" patternUnits="userSpaceOnUse">
+          <rect width="1200" height="800" fill="#0b2620"/>
+          <g fill="none" stroke="#175f4a" stroke-width="7">
+            <circle cx="300" cy="180" r="60"/><circle cx="300" cy="180" r="105"/>
+            <circle cx="300" cy="180" r="155"/><circle cx="300" cy="180" r="210"/>
+            <circle cx="300" cy="180" r="270"/><circle cx="300" cy="180" r="335"/>
+            <circle cx="930" cy="620" r="70"/><circle cx="930" cy="620" r="125"/>
+            <circle cx="930" cy="620" r="185"/><circle cx="930" cy="620" r="250"/>
+            <circle cx="930" cy="620" r="320"/>
+            <circle cx="760" cy="140" r="55"/><circle cx="760" cy="140" r="110"/>
+            <circle cx="760" cy="140" r="175"/>
+            <circle cx="120" cy="640" r="60"/><circle cx="120" cy="640" r="118"/>
+          </g>
+          <g fill="none" stroke="#2b8064" stroke-width="2.4" opacity=".8">
+            <circle cx="300" cy="180" r="82"/><circle cx="300" cy="180" r="132"/>
+            <circle cx="300" cy="180" r="186"/><circle cx="300" cy="180" r="300"/>
+            <circle cx="930" cy="620" r="96"/><circle cx="930" cy="620" r="155"/>
+            <circle cx="930" cy="620" r="216"/>
+            <circle cx="760" cy="140" r="82"/><circle cx="120" cy="640" r="90"/>
+          </g>
+        </pattern>
+      </defs>
+      <rect width="1200" height="800" fill="url(#bands)" filter="url(#mal)"/>
+      <rect width="1200" height="800" fill="url(#core)" opacity=".72"/>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Самара · улица Агибалова, 68</p>
+        <h1 class="title">ПЛЕН</h1>
+        <p class="title-sub">салон красоты</p>
+        <p class="claim">Плен красоты, в который <em>хочется возвращаться</em> снова и снова</p>
+        <p class="said">Так они говорят о себе сами. Гости в отзывах отвечают тем же: «название салона оправдывает, даже уходить не хотелось».</p>
+        <div class="hero-cta">
+          <a class="btn btn-fill" href="#zapis">Записаться</a>
+          <a class="btn" href="#price">Цены первого визита</a>
+        </div>
+      </div>
+
+      <div class="arch">
+        <img src="img/wave-emerald.jpg" alt="Локоны после укладки в салоне «Плен»" width="900" height="1200">
+        <svg class="arch-ring" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M 2 400 L 2 150 A 148 148 0 0 1 298 150 L 298 400"/>
+        </svg>
+        <span class="spark" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><b>5,0</b><span>средняя оценка, 54 оценки на Яндекс Картах</span></div>
+      <div class="fact"><b>45</b><span>отзывов, и ни одной оценки ниже пяти у большинства</span></div>
+      <div class="fact"><b>2026</b><span>«Хорошее место» по версии Яндекс Карт</span></div>
+      <div class="fact"><b>до 21:00</b><span>каждый день, без выходных</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Что делаем ══ -->
+<section class="band" id="doing">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Направления</p>
+      <h2>Всё, ради чего сюда приходят</h2>
+      <p>Список — их собственный, слово в слово из закреплённой записи во ВКонтакте.</p>
+    </div>
+    <div class="doing">
+      <ol id="doing-list"></ol>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Кудри ══ -->
+<section class="band band-emerald" id="curly">
+  <div class="wrap">
+    <div class="curly">
+      <div>
+        <div class="head" style="margin-bottom:0">
+          <p class="eyebrow">Салон для кудрявых</p>
+          <h2>Биозавивка: локоны, которые ведут себя прилично</h2>
+          <p>Отметка «салон для кудрявых» стоит у них в карточке на Картах, а биозавивку гости хвалят чаще всего остального. Четыре обещания ниже — с их собственной афиши.</p>
+        </div>
+        <ul class="promise" id="promise"></ul>
+        <p style="margin-top:1.6rem;font-size:14.5px;color:rgba(243,237,225,.8)">
+          «Процедура длилась 2 часа, результат очень порадовал. Кудри крупные, как договаривались. По уходу тоже всё объяснили» — Svetlana Vainer, отзыв на Картах.
+        </p>
+      </div>
+      <div class="curly-pics">
+        <img src="img/curls.jpg" alt="Мелкие упругие локоны после биозавивки" loading="lazy" width="900" height="1500">
+        <img src="img/braids.jpg" alt="Афрокосы на фоне моховой стены салона" loading="lazy" width="900" height="1200">
+        <img src="img/waves-long.jpg" alt="Длинные волны тёмного оттенка" loading="lazy" width="900" height="1200">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Первый визит ══ -->
+<section class="band band-light" id="price">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Цены</p>
+      <h2>Весь опубликованный прайс — это цены первого визита</h2>
+      <p>Так они и выложены: и на карточке в Картах, и в группе. Для новых гостей салон держит скидку, и именно эти суммы видит человек, который ищет их первый раз.</p>
+    </div>
+    <div class="price"><ul id="price-list"></ul></div>
+    <p class="src" id="price-src"></p>
+  </div>
+</section>
+
+<!-- ══ Сколько длится ══ -->
+<section class="band" id="howlong">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Время</p>
+      <h2>Сколько длится плен</h2>
+      <p>Название обыгрывают сами гости, поэтому честно: вот сколько вы просидите в кресле и сколько потом продержится результат.</p>
+    </div>
+    <div class="clock" id="clock"></div>
+    <p class="src" style="color:var(--cream-dim)">Стойкость — из их собственных описаний услуг. Длительность визита — из отзывов гостей на Яндекс Картах, там эти часы названы прямо.</p>
+  </div>
+</section>
+
+<!-- ══ Работы ══ -->
+<section class="band band-emerald" id="works">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Работы</p>
+      <h2>Что выходит из-под рук</h2>
+      <p>Все кадры — с их карточки на Яндекс Картах, приведены к одной экспозиции. Снимки гостей с узнаваемыми лицами не берём.</p>
+    </div>
+    <div class="works" id="works-grid"></div>
+  </div>
+</section>
+
+<!-- ══ Зал ══ -->
+<section class="band" id="hall">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Зал</p>
+      <h2>Зелёный кирпич, латунь и стена из живого мха</h2>
+      <p>Хрустальная люстра над стойкой, зеркала в золотых рамах, флорариум, полка с цветным канекалоном во всю стену. Снимали не мы — это их собственные фотографии.</p>
+    </div>
+    <div class="hall">
+      <div class="tall"><img src="img/moss-room.jpg" alt="Кабинет с моховой стеной и бирюзовыми креслами" loading="lazy" width="900" height="1850"></div>
+      <div><img src="img/hall.jpg" alt="Зал с хрустальной люстрой" loading="lazy" width="900" height="900"></div>
+      <div><img src="img/shelf.jpg" alt="Полка с цветными мотками канекалона" loading="lazy" width="900" height="900"></div>
+      <div><img src="img/coffee.jpg" alt="Стакан кофе с монограммой салона" loading="lazy" width="900" height="900"></div>
+      <div><img src="img/mirrors.jpg" alt="Зеркала в золотых рамах на зелёной кирпичной стене" loading="lazy" width="900" height="900"></div>
+      <div class="wide"><img src="img/desk-logo.jpg" alt="Стойка администратора с монограммой «Плен»" loading="lazy" width="1850" height="900"></div>
+      <div><img src="img/florarium.jpg" alt="Флорариум на стойке" loading="lazy" width="900" height="900"></div>
+      <div><img src="img/palette.jpg" alt="Палитра красок для волос" loading="lazy" width="900" height="900"></div>
+      <div><img src="img/strands.jpg" alt="Пряди для наращивания и моховой шар" loading="lazy" width="900" height="900"></div>
+      <div><img src="img/scissors.jpg" alt="Ножницы в фирменном чехле" loading="lazy" width="900" height="900"></div>
+      <div><img src="img/nail-desk.jpg" alt="Маникюрный стол с бирюзовыми креслами" loading="lazy" width="900" height="900"></div>
+    </div>
+    <ul class="perks" id="perks"></ul>
+  </div>
+</section>
+
+<!-- ══ Отзывы ══ -->
+<section class="band band-emerald" id="revs">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Отзывы</p>
+      <h2>Сорок пять отзывов и ровная пятёрка</h2>
+      <p>Настоящие, с их карточки на Яндекс Картах. Сокращены, имена мастеров оставлены как в оригинале.</p>
+    </div>
+    <div class="revs" id="revs-wall"></div>
+    <p class="eyebrow" style="margin:2.2rem 0 .2rem">Кого зовут по имени</p>
+    <div class="masters" id="masters"></div>
+  </div>
+</section>
+
+<!-- ══ Как доехать ══ -->
+<section class="band" id="find">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Адрес</p>
+      <h2>Рядом с вокзалом, поэтому заходят и проездом</h2>
+      <p>«Срочно искала где сделать маникюр в чужом городе поближе к жд вокзалу и не прогадала» — отзыв гостьи, февраль.</p>
+    </div>
+    <div class="find">
+      <div class="map">
+        <iframe src="https://yandex.ru/map-widget/v1/?oid=232546382943&amp;ol=biz&amp;ll=50.120648%2C53.191557&amp;z=17"
+                title="Плен на Яндекс Картах" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div class="info">
+        <dl>
+          <div><dt>Адрес</dt><dd>Самара, улица Агибалова, 68</dd></div>
+          <div><dt>Часы</dt><dd>Пн–Пт 9:00–21:00<br>Сб, Вс 10:00–21:00</dd></div>
+          <div><dt>Телефон</dt><dd><a href="tel:+79608325552">+7 (960) 832-55-52</a></dd></div>
+          <div><dt>Рядом</dt><dd>Остановка «Пригородный автовокзал», метро «Алабинская» в 2,7 км</dd></div>
+          <div><dt>Запись</dt><dd><a href="https://n1597035.yclients.com/" target="_blank" rel="noopener">Онлайн через YCLIENTS</a></dd></div>
+          <div><dt>Соцсети</dt><dd><a href="https://vk.com/club232069849" target="_blank" rel="noopener">ВКонтакте</a> · <a href="https://t.me/plensamara" target="_blank" rel="noopener">Телеграм</a></dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ Запись ══ -->
+<section class="band band-emerald" id="zapis">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Запись</p>
+      <h2>Оставьте номер — перезвонят и подберут время</h2>
+      <p>В отзывах есть и такое: «в ВК непонятно как записаться» и «не дозвониться». Форма на сайте закрывает ровно эту дыру: заявка не теряется и ждёт, пока у мастера освободятся руки.</p>
+    </div>
+    <form class="form" id="form" novalidate>
+      <label>Как вас зовут
+        <input type="text" name="name" autocomplete="name" required placeholder="Имя">
+      </label>
+      <label>Телефон
+        <input type="tel" name="tel" autocomplete="tel" required placeholder="+7 900 000-00-00">
+      </label>
+      <label>Что хотите сделать
+        <select name="what" id="what"></select>
+      </label>
+      <label>Что-то важное про вас
+        <textarea name="note" placeholder="Пористые волосы, приду с ребёнком, нужен вечер"></textarea>
+      </label>
+      <button class="btn btn-fill" type="submit">Отправить заявку</button>
+      <p class="hint">Это демо-макет: форма ничего не отправляет и никуда не записывает. На настоящем сайте заявка ушла бы администратору и в их YCLIENTS.</p>
+    </form>
+    <div class="ok" id="ok" hidden></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="sig">Красота, которая подчёркивает тебя</p>
+    <p>Демо-макет. Фотографии, цены, оценки и отзывы взяты с карточки заведения на Яндекс Картах и из их группы во ВКонтакте. Салон к этой странице отношения не имеет и её не заказывал.</p>
+    <p>Разработка — студия Лендвис, <a href="https://lendvis.ru">lendvis.ru</a></p>
+  </div>
+</footer>
+
+<!-- Золотая нить: рисуется на всю высоту документа -->
+<div class="thread" aria-hidden="true">
+  <svg preserveAspectRatio="none" viewBox="0 0 100 1000">
+    <path pathLength="1" d="M 50 0 C 14 90 86 150 50 240 C 14 330 86 390 50 480 C 14 570 86 630 50 720 C 14 810 86 870 50 1000"/>
+  </svg>
+</div>
+
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rub = n => n.toLocaleString('ru-RU') + ' ₽';
+
+/* ── Направления: их собственный список из закреплённой записи ВК ── */
+const DOING = [
+  ['Стрижки и окрашивание любой сложности', 'Работают на профессиональной косметике L’Oréal'],
+  ['Биозавивка и локоны', 'Отдельная специализация: в карточке стоит «салон для кудрявых»'],
+  ['Наращивание волос', 'И продажа волос премиум качества — своя витрина прядей во всю стену'],
+  ['Реконструкция и восстановление волос', 'Уходовые процедуры, лечение волос и кожи головы'],
+  ['Услуги бровиста', 'Коррекция, окрашивание бровей и ресниц, ламинирование ресниц'],
+  ['Маникюр и педикюр', 'Аппаратный, комбинированный, детский и мужской'],
+  ['Профессиональный макияж', 'И вечерние причёски — свадебные в том числе']
+];
+$('doing-list').innerHTML = DOING.map(([t, d], i) => `
+  <li><span class="n">${String(i + 1).padStart(2, '0')}</span>
+      <span><span class="t">${esc(t)}</span><span class="d">${esc(d)}</span></span></li>`).join('');
+
+/* ── Четыре обещания с их афиши по биозавивке ── */
+const PROMISE = [
+  ['Щадящая формула', 'Бережное отношение к волосам'],
+  ['Естественный эффект', 'Мягкие, упругие локоны без пушения'],
+  ['Долговременный результат', 'Стойкий эффект до 3–4 месяцев'],
+  ['Лёгкость в укладке', 'Проснулись — и уже великолепны']
+];
+$('promise').innerHTML = PROMISE.map(([b, s]) =>
+  `<li><b>${esc(b)}</b><span>${esc(s)}</span></li>`).join('');
+
+/* ── Прайс. Всё опубликовано ими: [услуга, цена, пометка, примечание] ── */
+const PRICE = [
+  ['Стрижка женская', 1200, 'первое посещение', 'Дальше по прайсу салона, скидка новым гостям — 20 %'],
+  ['Стрижка мужская', 900, 'первое посещение', 'Та же скидка 20 %; отдельно указано, что есть барбершоп'],
+  ['Стрижка детская', 700, '', 'До 7 лет. В отзывах хвалят за трёхлеток: дают нажать на кнопку фена'],
+  ['Коррекция и окрашивание бровей', 990, 'первое посещение', 'Комплексом, скидка новым гостям — 20 %'],
+  ['Маникюр с покрытием гель-лак', 1840, 'первое посещение', 'Скидка 20 % на маникюр и педикюр. Классический с покрытием — от 1690 ₽'],
+  ['Окрашивание волос', 2000, 'со скидкой 15 %', 'Скидка держится на любое окрашивание, косметика L’Oréal'],
+  ['Наращивание волос', 1000, '', 'Минус 3000 ₽, если волосы куплены в салоне'],
+  ['Комбинированный маникюр', 900, '', 'Цена из карточки на Яндекс Картах']
+];
+$('price-list').innerHTML = PRICE.map(([n, p, tag, note]) => `
+  <li>
+    <span class="name">${esc(n)}${tag ? `<span class="tag">${esc(tag)}</span>` : ''}</span>
+    <span class="sum">${rub(p)}</span>
+    <span class="note">${esc(note)}</span>
+  </li>`).join('');
+$('price-src').textContent =
+  'Восемь позиций — всё, что салон публикует открыто: семь на карточке в Яндекс Картах и цены из группы ВКонтакте. ' +
+  'Ничего не пересчитано и не додумано. Полный прайс есть у администратора и в их онлайн-записи.';
+
+/* ── Время: стойкость из их описаний, часы визита из отзывов ── */
+const CLOCK = [
+  ['2', 'часа', 'Биозавивка', 'Столько заняла процедура у гостьи, которая пришла за крупными локонами.',
+   'Держится <b>до 3–4 месяцев</b> — их собственное обещание с афиши.'],
+  ['5', 'часов', 'Сложное окрашивание', 'Гостья приехала специально, посмотрела за это время любимый сериал и осталась довольна.',
+   'Чай, кофе и печенье всё это время — за счёт салона.'],
+  ['3', 'недели', 'Маникюр с гель-лаком', 'Столько салон обещает стойкого блеска в описании услуги.',
+   'Отзыв за март: <b>пережил две недели солёной морской воды</b> и дожил до коррекции.']
+];
+$('clock').innerHTML = CLOCK.map(([big, unit, h, p, keep]) => `
+  <div class="slot">
+    <div class="big">${esc(big)}</div><div class="unit">${esc(unit)}</div>
+    <h3>${esc(h)}</h3><p>${esc(p)}</p>
+    <div class="keep">${keep}</div>
+  </div>`).join('');
+
+/* ── Работы ── */
+const WORKS = [
+  ['bob-green', 'Каре'], ['copper', 'Медный'], ['balayage', 'Балаяж'], ['blond-waves', 'Мягкие волны'],
+  ['gloss', 'Глянец'], ['pixie', 'Пикси'], ['bob-silver', 'Серебро'], ['long-blond', 'Длина'],
+  ['extensions', 'Наращивание'], ['colouring', 'Окрашивание'], ['cutting', 'Стрижка'], ['fade', 'Мужская'],
+  ['updo-1', 'Вечерняя'], ['updo-2', 'Пучок'], ['updo-3', 'Свадебная'], ['updo-4', 'Гладкий пучок'],
+  ['updo-5', 'Ретро'], ['blond-straight', 'Блонд'],
+  ['nails-coffee', 'Френч'], ['nails-french', 'Классика'], ['nails-hearts', 'Дизайн'], ['nails-nude', 'Нюд'],
+  ['nails-white', 'Молочный'], ['curls', 'Локоны']
+];
+$('works-grid').innerHTML = WORKS.map(([f, c]) => `
+  <figure><img src="img/${f}.jpg" alt="${esc(c)} — работа мастеров салона «Плен»" loading="lazy" width="900" height="1200">
+  <figcaption>${esc(c)}</figcaption></figure>`).join('');
+
+/* ── Что есть в салоне, по карточке ── */
+const PERKS = [
+  'Wi-Fi и парковка у входа',
+  'Чай, кофе и печенье пока ждёте',
+  'Можно со всеми животными',
+  'С детьми спокойно, даже с грудными',
+  'Карта лояльности с первого визита',
+  'Подарочные сертификаты',
+  'Оплата картой, СБП и по QR',
+  'Запись онлайн, без звонка'
+];
+$('perks').innerHTML = PERKS.map(p => `<li>${esc(p)}</li>`).join('');
+
+/* ── Отзывы с их карточки, сокращены ── */
+const REVS = [
+  ['Снежана Утрясова', '20 мая', 'Ирина, окрашивание',
+   'Наконец-то мне сделали айртач, о котором я так долго мечтала. У меня пористый волос, испортить такой очень легко. Ирина сохранила самое главное — качество волос. Ещё очень вкусный кофе и мягкие удобные кресла.'],
+  ['Svetlana Vainer', '24 апреля', 'Алина и Евгения, биозавивка',
+   'Процедура длилась 2 часа, результат очень порадовал. Кудри крупные, как договаривались. По уходу тоже всё объяснили. Мастера знают своё дело.'],
+  ['Екатерина Зимодра', '4 апреля', 'исправление чужой стрижки',
+   'Постригли в том салоне кусками, здесь всё исправили и учли все пожелания. Пришла с ребёнком девяти месяцев — девушки отреагировали спокойно, даже умилялись и поддерживали.'],
+  ['Кристина Волович', '26 декабря 2025', 'детская стрижка',
+   'Искала трёхлетнему ребёнку парикмахерскую недалеко от дома. Мастер беседовала с малышом, давала нажать на кнопку фена и машинки. На выходе угостили вкусняшкой. Теперь мы ваши постоянные клиенты.'],
+  ['Анна', '22 апреля', 'биозавивка',
+   'После посещения окружающие говорят: «Вы на 15 лет моложе стали». И я с ними согласна. В сентябре мне 50 будет, а чувствую себя на 30.'],
+  ['Юлия Ш.', '14 мая', 'Ирина, сложное окрашивание',
+   'Приехала специально, чтобы сделать сложное окрашивание. Провела классно время, пять часов, посмотрела любимый сериал, угостили чаем с печенькой, записали на программу лояльности.'],
+  ['Olga Yunuskaya', '15 августа', 'маникюр',
+   'Мастер начинающая, поэтому работала очень долго — салон прям оправдал своё название «Плен». Но маникюр получился очень неплохой и главное, что очень похож на картинку-оригинал. Приду ещё на педикюр.'],
+  ['KonnovaTS2705', '2 марта', 'маникюр',
+   'Срочно искала где сделать маникюр в чужом городе поближе к жд вокзалу и не прогадала. Делала 5 февраля, до коррекции дожили отлично: пережили две недели солёной морской воды в лёгкую.'],
+  ['Валерий Землянский', '28 июля', 'Ксения, брови',
+   'Стильное, уютное пространство, доброжелательная атмосфера. Ксения внимательно выслушала пожелания, всё объяснила. Результат естественный и именно такой, как я хотел.'],
+  ['Наталия Борисова', '6 августа', 'афрокосы',
+   'Заплетала афрокосы, сервис и персонал на самом высшем уровне. Очень уютная атмосфера.'],
+  ['kobeleva2008', '10 июля', 'Ирина и Алина, локоны',
+   'Делала локоны на выпускной. Продержались почти весь выпускной вечер — четыре с половиной часа.'],
+  ['Дарья С.', '21 декабря 2025', 'укладка',
+   'Была первой клиенткой в этом салоне. Атмосфера, профессиональная косметика, вежливый персонал — всё очень комфортно, даже уходить не хотелось. Название салона оправдывает.']
+];
+$('revs-wall').innerHTML = REVS.map(([a, d, s, t]) => `
+  <article class="rev"><p>${esc(t)}</p>
+    <div class="who"><b>${esc(a)}</b><span>${esc(s)} · ${esc(d)}</span></div></article>`).join('');
+
+const MASTERS = [
+  ['Ирина', 'окрашивание, айртач, стрижки'],
+  ['Алина', 'биозавивка и локоны'],
+  ['Евгения', 'маникюр, педикюр, биозавивка'],
+  ['Ксения', 'брови и ресницы'],
+  ['Елена', 'стрижка чёлки']
+];
+$('masters').innerHTML = MASTERS.map(([n, s]) =>
+  `<span><b>${esc(n)}</b> — ${esc(s)}</span>`).join('');
+
+/* ── Форма: выбор из тех же направлений ── */
+$('what').innerHTML = ['Подскажите, что выбрать', ...DOING.map(d => d[0])]
+  .map(v => `<option>${esc(v)}</option>`).join('');
+
+$('form').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target, name = f.name.value.trim(), tel = f.tel.value.trim();
+  if (!name || tel.replace(/\D/g, '').length < 10) {
+    (!name ? f.name : f.tel).focus();
+    return;
+  }
+  const ok = $('ok'), picked = f.what.selectedIndex > 0;
+  ok.textContent = name + ', заявка' +
+    (picked ? ' на «' + f.what.value.toLowerCase() + '» ' : ' ') +
+    'собрана. На настоящем сайте она уже улетела бы администратору' +
+    (picked ? '.' : ', а услугу подобрали бы при звонке.');
+  ok.hidden = false;
+  f.hidden = true;
+  ok.scrollIntoView({ block: 'center', behavior: 'smooth' });
+});
+})();
+</script>
+</body>
+</html>
