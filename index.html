@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0a221c">
 <title>Плен — салон красоты в Самаре, Агибалова, 68</title>
 <meta name="description" content="Демо-макет сайта салона красоты «Плен»: стрижки, окрашивание, биозавивка, брови, маникюр. Самара, Агибалова, 68.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +32,7 @@
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-behavior:smooth;overflow-x:clip}
+html{color-scheme:dark;scroll-behavior:smooth;overflow-x:clip}
 body{
   margin:0;position:relative;background:var(--malachite);color:var(--cream);
   font-family:var(--fb);font-size:16px;line-height:1.6;
@@ -39,10 +40,11 @@ body{
 }
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
-h1,h2,h3{font-family:var(--fd);font-weight:400;margin:0;line-height:1.08}
+h1,h2,h3{font-family:var(--fd);font-weight:400;margin:0;line-height:1.08;text-wrap:balance}
 :focus-visible{outline:2px solid var(--gold-lt);outline-offset:3px}
 
-.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--pad)}
+.wrap{max-width:1180px;margin:0 auto;
+  padding-inline:max(var(--pad),env(safe-area-inset-left)) max(var(--pad),env(safe-area-inset-right))}
 .eyebrow{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin:0 0 1rem}
 
 /* ── Шапка ── */
@@ -54,15 +56,21 @@ h1,h2,h3{font-family:var(--fd);font-weight:400;margin:0;line-height:1.08}
 .mark i{font-style:normal;font-size:9px;letter-spacing:.26em;color:var(--gold);text-transform:uppercase}
 .top nav{display:none;gap:1.5rem;font-size:13.5px}
 .top nav a{text-decoration:none;color:var(--cream-dim);transition:color .25s}
-.top nav a:hover{color:var(--gold-lt)}
+@media (hover:hover) and (pointer:fine){.top nav a:hover{color:var(--gold-lt)}}
 .tel{display:none;font-size:13.5px;color:var(--cream-dim);text-decoration:none;white-space:nowrap}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-  padding:.7rem 1.35rem;border:1px solid var(--gold);color:var(--gold-lt);
-  background:none;font:inherit;font-size:13px;letter-spacing:.13em;text-transform:uppercase;
-  text-decoration:none;cursor:pointer;transition:background .3s,color .3s;min-height:44px}
-.btn:hover{background:var(--gold);color:var(--malachite)}
+  padding:.75rem 1.4rem;border:1px solid var(--gold);color:var(--gold-lt);
+  background:none;font:inherit;font-size:13px;letter-spacing:.11em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;min-height:46px;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  transition:transform 160ms cubic-bezier(.23,1,.32,1),background 260ms cubic-bezier(.23,1,.32,1),
+             color 260ms cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
 .btn-fill{background:var(--gold);color:var(--malachite);border-color:var(--gold)}
-.btn-fill:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--gold);color:var(--malachite)}
+  .btn-fill:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+}
 @media(min-width:900px){.top nav{display:flex}.tel{display:block}}
 /* На узком экране подпись у логотипа выдавливала кнопку за край.
    Её не было видно только потому, что overflow-x на body всё обрезал. */
@@ -113,7 +121,8 @@ h1,h2,h3{font-family:var(--fd);font-weight:400;margin:0;line-height:1.08}
   gap:1px;margin-top:clamp(2.4rem,6vw,3.6rem);background:var(--line)}
 @media(min-width:720px){.facts{grid-template-columns:repeat(4,1fr)}}
 .fact{background:var(--malachite);padding:1.15rem 1rem}
-.fact b{display:block;font-family:var(--fd);font-size:clamp(1.5rem,4vw,2.05rem);color:var(--gold-lt);line-height:1}
+.fact b{display:block;font-family:var(--fd);font-size:clamp(1.5rem,4vw,2.05rem);color:var(--gold-lt);
+  line-height:1;font-variant-numeric:tabular-nums}
 .fact span{display:block;font-size:12px;color:var(--cream-dim);margin-top:.4rem;line-height:1.35}
 
 /* ── Золотая нить: одна линия на всю страницу, дорисовывается прокруткой ── */
@@ -132,7 +141,7 @@ h1,h2,h3{font-family:var(--fd);font-weight:400;margin:0;line-height:1.08}
 @keyframes draw{to{stroke-dashoffset:0}}
 
 /* ── Секции ── */
-section{position:relative}
+section{position:relative;scroll-margin-top:66px}
 .band{padding:clamp(3.4rem,9vw,6.4rem) 0}
 .band-light{background:var(--cream);color:var(--ink)}
 .band-light .eyebrow{color:#8a6f14}
@@ -168,7 +177,8 @@ section{position:relative}
   display:grid;grid-template-columns:1fr auto;gap:.5rem 1rem;padding:1.05rem 0;align-items:baseline}
 .price ul{margin:0;padding:0}
 .price .name{font-family:var(--fd);font-size:clamp(1.05rem,3.2vw,1.35rem)}
-.price .sum{font-family:var(--fd);font-size:clamp(1.15rem,3.4vw,1.5rem);white-space:nowrap;color:#1d3a2e}
+.price .sum{font-family:var(--fd);font-size:clamp(1.15rem,3.4vw,1.5rem);white-space:nowrap;
+  color:#1d3a2e;font-variant-numeric:tabular-nums}
 .price .note{grid-column:1/-1;font-size:12.5px;color:#6a7570;margin-top:.2rem}
 .tag{display:inline-block;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
   border:1px solid #b38f1f;color:#8a6f14;padding:.2rem .5rem;margin-left:.55rem;vertical-align:middle;white-space:nowrap}
@@ -251,6 +261,7 @@ section{position:relative}
 .form textarea{min-height:92px;resize:vertical}
 .form option{color:#14201b}
 .hint{font-size:12.5px;color:var(--cream-dim);margin:0}
+.err{color:#e8a2a2;font-size:12.5px;text-transform:none;letter-spacing:0;min-height:1.1em}
 .ok{border:1px solid var(--gold);padding:1rem 1.15rem;font-size:14.5px;color:var(--gold-lt)}
 
 /* ── Подвал ── */
@@ -264,7 +275,7 @@ section{position:relative}
 
 <header class="top">
   <div class="wrap top-in">
-    <a class="mark" href="#top"><b>ПЛЕН</b><i>салон красоты</i></a>
+    <a class="mark" href="#top"><b translate="no">ПЛЕН</b><i>салон красоты</i></a>
     <nav>
       <a href="#curly">Кудри</a>
       <a href="#price">Первый визит</a>
@@ -325,7 +336,7 @@ section{position:relative}
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Самара · улица Агибалова, 68</p>
-        <h1 class="title">ПЛЕН</h1>
+        <h1 class="title" translate="no">ПЛЕН</h1>
         <p class="title-sub">салон красоты</p>
         <p class="claim">Плен красоты, в который <em>хочется возвращаться</em> снова и снова</p>
         <p class="said">Так они говорят о себе сами. Гости в отзывах отвечают тем же: «название салона оправдывает, даже уходить не хотелось».</p>
@@ -336,7 +347,8 @@ section{position:relative}
       </div>
 
       <div class="arch">
-        <img src="img/wave-emerald.jpg" alt="Локоны после укладки в салоне «Плен»" width="900" height="1200">
+        <img src="img/wave-emerald.jpg" alt="Локоны после укладки в салоне «Плен»"
+             width="900" height="1200" fetchpriority="high">
         <svg class="arch-ring" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true">
           <path d="M 2 400 L 2 150 A 148 148 0 0 1 298 150 L 298 400"/>
         </svg>
@@ -505,10 +517,13 @@ section{position:relative}
     </div>
     <form class="form" id="form" novalidate>
       <label>Как вас зовут
-        <input type="text" name="name" autocomplete="name" required placeholder="Имя">
+        <input type="text" name="name" autocomplete="name" required placeholder="Например, Анна">
+        <span class="err" id="e-name"></span>
       </label>
       <label>Телефон
-        <input type="tel" name="tel" autocomplete="tel" required placeholder="+7 900 000-00-00">
+        <input type="tel" name="tel" autocomplete="tel" inputmode="tel" spellcheck="false"
+               required placeholder="+7 900 000-00-00">
+        <span class="err" id="e-tel"></span>
       </label>
       <label>Что хотите сделать
         <select name="what" id="what"></select>
@@ -519,7 +534,7 @@ section{position:relative}
       <button class="btn btn-fill" type="submit">Отправить заявку</button>
       <p class="hint">Это демо-макет: форма ничего не отправляет и никуда не записывает. На настоящем сайте заявка ушла бы администратору и в их YCLIENTS.</p>
     </form>
-    <div class="ok" id="ok" hidden></div>
+    <div class="ok" id="ok" role="status" aria-live="polite" hidden></div>
   </div>
 </section>
 
@@ -683,10 +698,10 @@ $('what').innerHTML = ['Подскажите, что выбрать', ...DOING.m
 $('form').addEventListener('submit', e => {
   e.preventDefault();
   const f = e.target, name = f.name.value.trim(), tel = f.tel.value.trim();
-  if (!name || tel.replace(/\D/g, '').length < 10) {
-    (!name ? f.name : f.tel).focus();
-    return;
-  }
+  const okName = !!name, okTel = tel.replace(/\D/g, '').length >= 10;
+  $('e-name').textContent = okName ? '' : 'Как к вам обращаться?';
+  $('e-tel').textContent = okTel ? '' : 'Нужен номер, на который перезвонить';
+  if (!okName || !okTel) { (okName ? f.tel : f.name).focus(); return; }
   const ok = $('ok'), picked = f.what.selectedIndex > 0;
   ok.textContent = name + ', заявка' +
     (picked ? ' на «' + f.what.value.toLowerCase() + '» ' : ' ') +
